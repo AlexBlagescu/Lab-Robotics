@@ -1,6 +1,6 @@
 # Details about my homeworks
 
-#First homework:
+# First homework:
 
   Control a RGB led with 3 potentiometers.
   
