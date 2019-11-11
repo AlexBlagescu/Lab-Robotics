@@ -27,7 +27,7 @@ void loop() {
   if (currentTime - timeSensorDetectKnock >= toneTime && timeSensorDetectKnock != -1) {
     tone(buzzerPin, toneFrequency);
   }
-  if (currentTime - timeSensorDetectKnock >= toneTime && buttonValue == HIGH && timeSensorDetectKnock != -1) {
+  if (buttonValue == HIGH && timeSensorDetectKnock != -1) {
     noTone(buzzerPin);
     timeSensorDetectKnock = -1;
   }
