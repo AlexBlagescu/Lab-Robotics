@@ -22,7 +22,6 @@ void loop() {
   buttonValue = !buttonState;
   if (sensorReading > 0 && timeSensorDetectKnock == -1) {
     timeSensorDetectKnock = millis();
-    Serial.println("HERE");
   }
   if (currentTime - timeSensorDetectKnock >= toneTime && timeSensorDetectKnock != -1) {
     tone(buzzerPin, toneFrequency);
