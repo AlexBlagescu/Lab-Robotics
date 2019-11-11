@@ -5,7 +5,6 @@ int sensorValueRed = 0, sensorValueGreen = 0, sensorValueBlue = 0;
 int outputValueRed = 0, outputValueGreen = 0, outputValueBlue = 0;
 
 void setup() {
-  // initialize serial communications at 9600 bps:
   Serial.begin(9600);
 }
 
@@ -15,8 +14,6 @@ void loop() {
   sensorValueBlue = analogRead(analogInPinBlue);
 
   setColor(sensorValueRed, sensorValueGreen, sensorValueBlue);
-  
-  delay(2);
 }
 
 void setColor (int red, int green, int blue) {
