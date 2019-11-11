@@ -9,7 +9,7 @@
   Hardware Required:
       
       1. RGB led
-      2. 3x Resistors (220 ohm)
+      2. 3x Resistors (recommended 220ohm)
       3. Wires
       4. 3x Potentiometers
       5. Arduino
