@@ -61,7 +61,7 @@
        If you choose "Highscore", the display will show the biggest score set by a player. The value is stored with EEPROM. This maskes the score to remain unchanged even if you close the arduino. If you want to return to the main menu, you should press switch button.
        
   - Settings:
-      If you go for "Settings", the display will show your name and your start level. The name is fixed and the default level is 1. If you press switch button on "Level", you can choose with joystick what level do you want to play. After you choose the starting level, you should press again the switch button to save the modifies. If you want to return to the main menu, you should push your joystick to the left.
+      If you go for "Settings", the display will show your name and your start level. The name is fixed and the default level is 1. If you press the switch button on "Level", you can choose with joystick what level do you want to play. After you choose the starting level, you should press again the switch button to save the modifies. If you want to return to the main menu, you should push your joystick to the left.
      
   Hardware Required:
       
