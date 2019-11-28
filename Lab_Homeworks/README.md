@@ -52,6 +52,8 @@
  
   Build a menu game.
   
+  Video demo: https://youtu.be/fOGicJgCf88
+  
   At the start, on lcd display will show 3 things:
   
   - Start game:
@@ -73,7 +75,5 @@
         6. Arduino
         7. Connector cable
 
-
-  
   
   
