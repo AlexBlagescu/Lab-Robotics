@@ -58,7 +58,7 @@
       When you press the switch button, the game will start. You can set what level do you want to play from Settings. As default, the level is set to be 1. After 5 seconds, the level is increasing and the score will be modified according to (score = lvl * 3). After 10 seconds, the game is over and "Congratulations!" is printed to the screen. If you want to return to the main menu, you should press switch button.
       
   - Highscore:
-       If you choose "Highscore", the display will show the biggest score set by a player. The value is stored with EEPROM, this makes the score remain the same even if you close the arduino. If you want to return to the main menu, you should press switch button.
+       If you choose "Highscore", the display will show the biggest score set by a player. The value is stored with EEPROM. This maskes the score to remain unchanged even if you close the arduino. If you want to return to the main menu, you should press switch button.
        
   - Settings:
       If you go for "Settings", the display will show your name and your start level. The name is fixed and the default start level is 1. If you press switch button on "Level", you can choose with joystick what levell do you want to play. After you choose the starting level, you should press again switch button to save the modifies. If you want to return to the main menu, you should push your joystick to the left.
