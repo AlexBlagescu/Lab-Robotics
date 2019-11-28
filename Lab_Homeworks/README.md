@@ -55,7 +55,7 @@
   At the start, on lcd display will show 3 things:
   
   - Start game:
-      When you press the switch button, the game will start. You can set what level do you want to play from Settings. As default, the level is set to be 1. After 5 seconds, the level is increasing and the score will be modified according to (score = lvl * 3). After 10 seconds, the game is over and "Congratulations!" is printed to the screen. If you want to return to the main menu, you should press the switch button.
+      When you press the switch button, the game will start. You can set what level do you want to play from "Settings". As default, the level is set to be 1. After 5 seconds, the level is increasing and the score will be modified according to (score = lvl * 3). After 10 seconds, the game is over and "Congratulations!" is printed to the screen. If you want to return to the main menu, you should press the switch button.
       
   - Highscore:
        If you choose "Highscore", the display will show the biggest score set by a player. The value is stored with EEPROM. This maskes the score to remain unchanged even if you close the arduino. If you want to return to the main menu, you should press the switch button.
