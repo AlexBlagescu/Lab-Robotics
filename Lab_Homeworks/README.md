@@ -1,6 +1,6 @@
 # Details about my homeworks
 
-# First homework:
+## First homework:
 
   Control a RGB led with 3 potentiometers.
   
@@ -15,7 +15,7 @@
       5. Arduino
       6. Connector cable
 
-# Second homework:
+## Second homework:
   
   Play a tune when passive piezo buzzer detect knock's.
   
@@ -32,7 +32,7 @@
       6. Arduino
       7. Connector cable
       
-# Third homework:
+## Third homework:
 
   Control a 4 digits 7-segments led display with a joystick.
   
@@ -48,7 +48,7 @@
       6. Connector cable
   
   
- # Fourth homework:
+ ## Fourth homework:
  
   Build a menu game.
   
