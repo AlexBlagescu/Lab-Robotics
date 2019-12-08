@@ -6,6 +6,7 @@
   
  
 Hardware Required:
+
     1. 1x 8x8 LED Matrix
     2. 1x Liquid Crystal Display
     3. 2x Joystick
