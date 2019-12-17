@@ -1,4 +1,5 @@
 #include "LedControl.h"
+#include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include <LiquidMenu.h>
 LedControl lc = LedControl(12, 11, 10, 1);
@@ -19,6 +20,7 @@ const int monstersPerLevel = 10;
 const int screenUpdateDelay = 60;
 int currentScreen = 0;
 int highScore = 0;
+int addr = 0;
 int lives = 3;
 int score = 0;
 int currentLevel = 0;
@@ -31,52 +33,46 @@ int yValue = 0, yValueMenu = 0;
 int minThreshold = 400;
 int maxThreshold = 600;
 int switchValue = 0, switchValueMenu = 0;
-bool joyMoved = false, joyMovedMenu = false, changeScreen = false;
+bool joyMoved = false, joyMovedMenu = false, changeScreen = false , stateHighScore = false, stateSettings = false;
 
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
-////            WELCOME SCREEN
-LiquidLine welcomeLine1(1, 0, "Welcome to ");
-LiquidLine welcomeLine2(2, 1, "Line Invaders!");
-
-LiquidScreen welcomeScreen(welcomeLine1, welcomeLine2);
-
-////            SECOND SCREEN
+////            First SCREEN
 LiquidLine playGameLine(3, 0, "Play Game");
 LiquidLine enterLine(2, 1, "Enter -> JS");
 
-LiquidScreen secondaryScreen(playGameLine, enterLine);
+LiquidScreen firstScreen(playGameLine, enterLine);
 
-////            THIRD SCREEN
+////            SECOND SCREEN
 LiquidLine highScoreLine(3, 0, "High Score");
 
-LiquidScreen thirdScreen(highScoreLine, enterLine);
+LiquidScreen secondScreen(highScoreLine, enterLine);
 
-//              FOURTH SCREEN
+//              THIRD SCREEN
 
 LiquidLine settingsLine(3, 0, "Settings");
 
-LiquidScreen fourthScreen(settingsLine, enterLine);
+LiquidScreen thirdScreen(settingsLine, enterLine);
 
-//              FIFTH SCREEN
+//              FOURTH SCREEN
 
 LiquidLine highScoreDisplayLine(0, 0, "High Score: ", highScore);
 LiquidLine returnLine(0, 1, "Press JS to exit");
 
-LiquidScreen fifthScreen(highScoreDisplayLine, returnLine);
+LiquidScreen fourthScreen(highScoreDisplayLine, returnLine);
 
-//              SIXTH SCREEN
+//              FIFTH SCREEN
 
 LiquidLine levelLine(3, 0, "Level: ", currentLevel);
 
-LiquidScreen sixthScreen(levelLine, returnLine);
+LiquidScreen fifthScreen(levelLine, returnLine);
 
-//              SEVENTH SCREEN
+//              SIXTH SCREEN
 
 LiquidLine livesLevelLine(0, 0, "Lives: ", lives, " Lvl: ", currentLevel);
 LiquidLine scoreLine(4, 1, "Score: ", score);
 
-LiquidScreen seventhScreen(livesLevelLine, scoreLine);
+LiquidScreen sixthScreen(livesLevelLine, scoreLine);
 
 LiquidMenu menu(lcd);
 
@@ -230,8 +226,8 @@ void checkCollision() {
             && monsters[currentLevel][j][1].x != -1 && monsters[currentLevel][j][1].t != -1) {
           if ((shotFirstWeapon[i].y == monsters[currentLevel][j][0].y && shotFirstWeapon[i].x == monsters[currentLevel][j][0].x) ||
               (shotFirstWeapon[i].y == monsters[currentLevel][j][1].y && shotFirstWeapon[i].x == monsters[currentLevel][j][1].x)) {
-            score = score +  max(1.2 * monsters[currentLevel][j][0].y, 1.2 * monsters[currentLevel][j][1].y);
-            menu.update();
+            score = score +  max(7.2 * monsters[currentLevel][j][0].y, 7.2 * monsters[currentLevel][j][1].y);
+            menu.softUpdate();
             lc.setLed(0, monsters[currentLevel][j][0].y, monsters[currentLevel][j][0].x, false);
             lc.setLed(0, monsters[currentLevel][j][1].y, monsters[currentLevel][j][1].x, false);
             monsters[currentLevel][j][0].y = monsters[currentLevel][j][0].x = monsters[currentLevel][j][0].t = -1;
@@ -314,7 +310,7 @@ bool checkMonstersAlive() {
 void playGame() {
   if (changeScreen == false) {
     changeScreen = true;
-    menu.change_screen(7);
+    menu.change_screen(6);
   }
   while (1) {
     switchValue = !digitalRead(pinSW);
@@ -331,16 +327,34 @@ void playGame() {
     checkCollision();
     if (checkGameOver() == true) {
       sadFace();
-      menu.change_screen(2);
+      menu.change_screen(1);
       delay(1000);
       lc.clearDisplay(0);
+      if (addr == 0) {
+        EEPROM.write(addr, score);
+        addr = 1;
+      }
+      else {
+        highScore = EEPROM.read(addr - 1);
+        if (score > highScore)
+          EEPROM.write(addr - 1, score);
+      }
       return;
     }
     else if (checkGameOver() == false && checkMonstersAlive() == false && countMonsters == 10) {
       happyFace();
-      menu.change_screen(2);
+      menu.change_screen(1);
       delay(1000);
       lc.clearDisplay(0);
+      if (addr == 0) {
+        EEPROM.write(addr, score);
+        addr = 1;
+      }
+      else {
+        highScore = EEPROM.read(addr - 1);
+        if (score > highScore)
+          EEPROM.write(addr - 1, score);
+      }
       return;
     }
     if (millis() - timeScreenUpdate >= 100) {
@@ -351,10 +365,37 @@ void playGame() {
   }
 }
 void highScoreFunction() {
-  
+  menu.change_screen(4);
+  highScore = EEPROM.read(addr - 1);
+  menu.softUpdate();
 }
 void settingsFunction() {
-  
+  menu.change_screen(5);
+  unsigned long settingTime = millis();
+  Serial.println("HERE");
+  while (1) {
+     Serial.println(xValueMenu);
+    if (xValueMenu < minThreshold && joyMovedMenu == false) {
+      joyMovedMenu = true;
+      currentLevel -= 1;
+      if (currentLevel < 0) {
+        currentLevel = 0;
+      }
+    }
+    if (xValueMenu > maxThreshold && joyMovedMenu == false) {
+      joyMovedMenu = true;
+      currentLevel += 1;
+      if (currentLevel > 3) {
+        currentLevel = 3;
+      }
+    }
+    if (xValueMenu >= minThreshold && xValueMenu <= maxThreshold) {
+      joyMovedMenu = false;
+    }
+    menu.softUpdate();
+//    if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && (millis() - settingTime >= 1000))
+//      break;
+  }
 }
 void resetGame() {
   lives = 3;
@@ -401,13 +442,12 @@ void setup() {
   playGameLine.attach_function(0, playGame);
   highScoreLine.attach_function(1, highScoreFunction);
   settingsLine.attach_function(2, settingsFunction);
-  menu.add_screen(welcomeScreen);
-  menu.add_screen(secondaryScreen);
+  menu.add_screen(firstScreen);
+  menu.add_screen(secondScreen);
   menu.add_screen(thirdScreen);
   menu.add_screen(fourthScreen);
   menu.add_screen(fifthScreen);
   menu.add_screen(sixthScreen);
-  menu.add_screen(seventhScreen);
   menu.update();
 
   randomSeed(analogRead(2));
@@ -422,44 +462,51 @@ void setup() {
     }
 }
 void loop() {
-  if (currentScreen == 0) {
-    delay(2000);
-    menu.next_screen();
-    menu.set_focusedLine(0);
-    currentScreen += 1;
-  }
   switchValueMenu = !digitalRead(pinSW);
   xValueMenu = analogRead(pinX);
   yValueMenu = analogRead(pinY);
-  if (yValueMenu < minThreshold && joyMovedMenu == false) {
+  menu.set_focusedLine(0);
+  if (yValueMenu < minThreshold && joyMovedMenu == false && stateHighScore == false && stateSettings == false) {
     joyMovedMenu = true;
     currentScreen -= 1;
-    if (currentScreen < 1) {
-      currentScreen = 1;
+    if (currentScreen < 0) {
+      currentScreen = 0;
     }
-    else {
+    else
       menu.previous_screen();
-      menu.set_focusedLine(0);
-    }
   }
-  if (yValueMenu > maxThreshold && joyMovedMenu == false) {
+  if (yValueMenu > maxThreshold && joyMovedMenu == false && stateHighScore == false && stateSettings == false) {
     joyMovedMenu = true;
     currentScreen += 1;
-    if (currentScreen > 3) {
-      currentScreen = 3;
+    if (currentScreen > 2) {
+      currentScreen = 2;
     }
-    else {
+    else
       menu.next_screen();
-      menu.set_focusedLine(0);
-    }
   }
   if (yValueMenu >= minThreshold && yValueMenu <= maxThreshold) {
     joyMovedMenu = false;
   }
-  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 1) {
+  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 0) {
     delay(500);
     menu.call_function(0);
     resetGame();
+  }
+  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 1) {
+    stateHighScore = !stateHighScore;
+    if (stateHighScore == true)
+      menu.call_function(1);
+    else {
+      menu.change_screen(2);
+    }
+  }
+  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 2) {
+    stateSettings = !stateSettings;
+    if (stateSettings == true)
+      menu.call_function(2);
+    else {
+      menu.change_screen(3);
+    }
   }
   lastSwitchValueMenu = switchValueMenu;
 }
