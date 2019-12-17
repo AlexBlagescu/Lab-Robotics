@@ -371,31 +371,24 @@ void highScoreFunction() {
 }
 void settingsFunction() {
   menu.change_screen(5);
-  unsigned long settingTime = millis();
-  Serial.println("HERE");
-  while (1) {
-     Serial.println(xValueMenu);
-    if (xValueMenu < minThreshold && joyMovedMenu == false) {
-      joyMovedMenu = true;
-      currentLevel -= 1;
-      if (currentLevel < 0) {
-        currentLevel = 0;
-      }
+  if (xValueMenu < minThreshold && joyMovedMenu == false) {
+    joyMovedMenu = true;
+    currentLevel -= 1;
+    if (currentLevel < 0) {
+      currentLevel = 0;
     }
-    if (xValueMenu > maxThreshold && joyMovedMenu == false) {
-      joyMovedMenu = true;
-      currentLevel += 1;
-      if (currentLevel > 3) {
-        currentLevel = 3;
-      }
-    }
-    if (xValueMenu >= minThreshold && xValueMenu <= maxThreshold) {
-      joyMovedMenu = false;
-    }
-    menu.softUpdate();
-//    if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && (millis() - settingTime >= 1000))
-//      break;
   }
+  if (xValueMenu > maxThreshold && joyMovedMenu == false) {
+    joyMovedMenu = true;
+    currentLevel += 1;
+    if (currentLevel > 3) {
+      currentLevel = 3;
+    }
+  }
+  if (xValueMenu >= minThreshold && xValueMenu <= maxThreshold) {
+    joyMovedMenu = false;
+  }
+  menu.softUpdate();
 }
 void resetGame() {
   lives = 3;
@@ -500,13 +493,11 @@ void loop() {
       menu.change_screen(2);
     }
   }
-  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 2) {
-    stateSettings = !stateSettings;
-    if (stateSettings == true)
-      menu.call_function(2);
-    else {
-      menu.change_screen(3);
-    }
-  }
-  lastSwitchValueMenu = switchValueMenu;
+//  if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 2)
+//    stateSettings = !stateSettings;
+//  if (stateSettings == true)
+//    menu.call_function(2);
+//  else if (switchValueMenu == 1 && lastSwitchValueMenu == 0 && currentScreen == 2)
+//    menu.change_screen(3);
+//  lastSwitchValueMenu = switchValueMenu;
 }
