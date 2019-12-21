@@ -3,8 +3,8 @@
 ## Description
 
     Line invaders is a 8x8 LED Matrix Arduino game which follow Chicken Invader's mechanics. The name "Line invaders" comes from the fact that in this game the monsters are replaced with lines. The game contains 4 levels and the difference between levels is that:
-      1.  The monsters have different respawn.
-      2.  The bullets goes to enemies with different speed (decreasing level by level).
+      - The monsters have different respawn.
+      - The bullets goes to enemies with different speed (decreasing level by level).
       
   
  
