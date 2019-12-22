@@ -10,7 +10,7 @@
     
 ## Play Game
   
-   The ship movement is controlled with X-axis of the joystick and the firing system is realised pressing the JS. The bullets goes from the center of the ship to the top of the matrix. The enemies are coming from top to bottom. If they reach the bottom of the matrix without dying, the player will lose one life. You have 3 lives, if you lose all of them, you died. If you kill all the enemies without losing all of your lives, you passed up the level.
+   The ship movement is controlled with X-axis of the joystick and the firing system is realised pressing the JS. The bullets goes from the center of the ship to the top of the matrix. The enemies are coming from top to bottom. If they reach the bottom of the matrix without dying, the player will lose one life. You have 3 lives, if you lose all of them, you died. If you kill all the enemies without losing all of your lives, you passed the level.
     
 ## High Score
     
