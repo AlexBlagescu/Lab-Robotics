@@ -14,7 +14,7 @@
     
 ## High Score
     
-   This function shows the best score that was inregistred by a player. The score is saved on EEPROM, so the highscore remains even if the arduino is restarted. To exit the High Score function, press the JS.
+   This function shows the best score that was inregistred by a player. The score is saved on EEPROM, so the highscore remains even if the arduino is restarted. To exit the High Score function press the JS.
     
 ## Settings
 
@@ -29,7 +29,7 @@
 
     1. 1x 8x8 LED Matrix
     2. 1x Liquid Crystal Display
-    3. 2x Joystick
+    3. 1x Joystick
     4. Resistors
     5. Driver for Matrix
     6. Wires
