@@ -37,7 +37,9 @@
     
 ## Used libraries:
 
-    1. [link către Google!] (Http://google.com)
+   1. Liquid menu (https://github.com/VaSe7u/LiquidMenu),  is a very cool and easy tool to create awesome menus, but that comes with some disadvances. The menu consume many memory resources and that can be very uncomfortable in larger projects.
+   2. LedControl is a tool used to control the Led's on the matrix.
+   3. LiquidCrystal is a tool used to control the LCD.
 
 
   
