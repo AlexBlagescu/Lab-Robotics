@@ -23,7 +23,7 @@ We already discussed how we can make the infinity leds effect so now let's focus
 
 ## Bonus features and demo video
 
-As a bonus, i decided to add 18 cool effects which makes our clock more intersting. [Here](cooming soon) you can find a demo to see how my clock and effects works
+As a bonus, i decided to add 18 cool effects which makes our clock more intersting. [Here](cooming soon) you can find a demo to see how my clock and effects works.
 
 ## How to use?
 
