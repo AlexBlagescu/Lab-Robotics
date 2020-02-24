@@ -6,4 +6,6 @@ Infinity Mirror is my final project for the Introduction to Robotics course. The
 
 ## Hardware Components
 
-[Here](https://docs.google.com/spreadsheets/d/1Htry010sDG5Vxl1XxuDkIDsEU6a6pIBbHVVmY9l-o_E/edit#gid=779150184) you can see a detailed list about components and where can you find them in Romania.
+[Here](https://docs.google.com/spreadsheets/d/1Htry010sDG5Vxl1XxuDkIDsEU6a6pIBbHVVmY9l-o_E/edit#gid=779150184) you can see a detailed list about components and where you will find them in Romania.
+
+### Quick components list:
