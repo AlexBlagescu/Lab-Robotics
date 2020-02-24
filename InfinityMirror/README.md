@@ -8,4 +8,4 @@ Infinity Mirror is my final project for the Introduction to Robotics course. The
 
 [Here](https://docs.google.com/spreadsheets/d/1Htry010sDG5Vxl1XxuDkIDsEU6a6pIBbHVVmY9l-o_E/edit#gid=779150184) you can see a detailed list about components and where you will find them in Romania.
 
-### Quick components list:
+#### Quick components list:
