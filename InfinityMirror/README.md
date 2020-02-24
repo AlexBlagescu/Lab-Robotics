@@ -17,6 +17,10 @@ Infinity Mirror Clock is my final project for the Introduction to Robotics cours
   5. Wires
   6. Breadbord
   
+## Build the project
+
+After you get all the components you can start to build up the project. First of all, you should make a circle and put around it the led strip. You can make the circle from many materials but for this project I used hobbyglass. After you have the circle ready, you can fit it around the middle of the mirror.I used hot glue tu make him stay fixed. Put the compontnes in one corner to hide the hardware, cause we want to have a smoother final product. When you have done that,  put the 70% reflection glass above the circle and fixed it. We're almost done, we need to make a body to hide the corners. Again, you can use hobbyglass for this.
+
 ## How it works?
 
 We already discussed how we can make the infinity leds effect so now let's focus on how our clock works.We have 3 colors, red green and blue. Red is representing the hours, green is representing the minutes and blue one is representing the seconds. Our RTC module is giving us the hour with 0-23 format so we need to convert it. We created a formula which help us to show the correct hour H = (HC * 5) % 60 where HC is the currently hour readed from RTC.
